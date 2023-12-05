@@ -66,6 +66,8 @@ onValue(users, (snapshot) => {
 });
 
 const canvas = document.getElementById('game');
+
+// reference: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 const context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
