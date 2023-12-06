@@ -59,8 +59,8 @@ onValue(users, (snapshot) => {
   firstHalf = gameData.slice(0, half);
   secondHalf = gameData.slice(half);
 
-  leftPaddleFromfb = 2*firstHalf.filter(Boolean).length-firstHalf.length;
-  rightPaddleFromfb = 2*secondHalf.filter(Boolean).length-secondHalf.length;
+  leftPaddleFromfb = -2*firstHalf.filter(Boolean).length+firstHalf.length;
+  rightPaddleFromfb = -2*secondHalf.filter(Boolean).length+secondHalf.length;
   console.log(leftPaddleFromfb);
   console.log(rightPaddleFromfb);
 });
@@ -199,6 +199,14 @@ function loop() {
     // in the next frame
     ball.x = rightPaddle.x - ball.width;
   }
+
+  context.font = "50px serif";
+  context.fillText(`Green: ${firstHalf.filter(Boolean).length}`,100,100)
+  context.fillText(`Red: ${firstHalf.length - firstHalf.filter(Boolean).length}`,100,200)
+
+  
+  context.fillText(`Green: ${secondHalf.filter(Boolean).length}`,500,100)
+  context.fillText(`Red: ${secondHalf.length - secondHalf.filter(Boolean).length}`,500,200)
 
   // draw ball
   context.fillRect(ball.x, ball.y, ball.width, ball.height);
