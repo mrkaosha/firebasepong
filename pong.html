@@ -50,6 +50,8 @@ var leftPaddleFromfb = 0;
 var rightPaddleFromfb = 0;
 var firstHalf = [];
 var secondHalf = [];
+var leftScore = 0;
+var rightScore = 0;
 onValue(users, (snapshot) => {
   const rawdata = snapshot.val();
   const gameData = Object.values(rawdata).filter(d=>d.status).map(function(item) { return item["color"]; });;
@@ -174,6 +176,7 @@ function loop() {
 
   // reset ball if it goes past paddle (but only if we haven't already done so)
   if ( (ball.x < 0 || ball.x > canvas.width) && !ball.resetting) {
+    ball.x < 0 ? rightScore++ : leftScore++;
     ball.resetting = true;
 
     // give some time for the player to recover before launching the ball again
@@ -207,6 +210,9 @@ function loop() {
   
   context.fillText(`Green: ${secondHalf.filter(Boolean).length}`,500,100)
   context.fillText(`Red: ${secondHalf.length - secondHalf.filter(Boolean).length}`,500,200)
+
+  context.fillText(leftScore,300,500);
+  context.fillText(rightScore,400,500);
 
   // draw ball
   context.fillRect(ball.x, ball.y, ball.width, ball.height);
