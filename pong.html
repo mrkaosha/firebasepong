@@ -63,8 +63,8 @@ onValue(users, (snapshot) => {
 
   leftPaddleFromfb = -2*firstHalf.filter(Boolean).length+firstHalf.length;
   rightPaddleFromfb = -2*secondHalf.filter(Boolean).length+secondHalf.length;
-  console.log(leftPaddleFromfb);
-  console.log(rightPaddleFromfb);
+  //console.log(leftPaddleFromfb);
+  //console.log(rightPaddleFromfb);
 });
 
 const canvas = document.getElementById('game');
@@ -127,11 +127,8 @@ function loop() {
   requestAnimationFrame(loop);
   context.clearRect(0,0,canvas.width,canvas.height);
 
-  console.log(leftPaddle.y)
-
   // move paddles by their velocity
   if (leftPaddleFromfb != null && firstHalf.length != 0 ) {
-    console.log('move');
     leftPaddle.y += leftPaddleFromfb * Math.ceil(paddleSpeed / firstHalf.length);
   }
 
